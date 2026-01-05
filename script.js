@@ -1,25 +1,20 @@
-/* AUTO SLIDER */
-document.querySelectorAll('.slider').forEach(slider => {
-  let x = 0;
-  setInterval(() => {
-    x += 340;
-    if (x >= slider.scrollWidth) x = 0;
-    slider.scrollTo({ left: x, behavior: 'smooth' });
-  }, 3000);
-});
+/* AUTO SLIDER (AMAN MOBILE) */
+if (window.innerWidth > 768) {
+  document.querySelectorAll('.slider').forEach(slider => {
+    let pos = 0;
+    setInterval(() => {
+      pos += 340;
+      if (pos >= slider.scrollWidth) pos = 0;
+      slider.scrollTo({ left: pos, behavior: 'smooth' });
+    }, 3000);
+  });
+}
 
 /* FADE IN */
-const obs = new IntersectionObserver(entries => {
+const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) e.target.classList.add('show');
   });
 }, { threshold: 0.15 });
 
-document.querySelectorAll('.fade').forEach(el => obs.observe(el));
-
-/* WA PULSE */
-const wa = document.querySelector('.wa-float');
-setInterval(() => {
-  wa.style.transform = 'scale(1.1)';
-  setTimeout(() => wa.style.transform = 'scale(1)', 300);
-}, 3000);
+document.querySelectorAll('.fade').forEach(el => observer.observe(el));
